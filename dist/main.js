@@ -1,0 +1,1 @@
+(()=>{"use strict";!function(){const e=document.querySelector(".content"),t=document.createElement("div");t.classList.add("page-content"),e.appendChild(t)}()})();
