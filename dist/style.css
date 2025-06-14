@@ -36,6 +36,7 @@ html, body {
     display: grid;
     grid-template-columns: 1fr 2fr;
     height: 100%;
+    position: relative;
 }
 
 .side-bar {
@@ -48,5 +49,12 @@ html, body {
     border: solid blue;
     width: 100%;
     display: flex;
-    
+}
+
+.task-form {
+    position: absolute;
+    display: flex;
+    background-color: #2B2D42;
+    inset-block-start: 170px;
+    inset-inline-start: 115px;
 }

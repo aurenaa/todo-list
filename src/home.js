@@ -1,4 +1,5 @@
 import Todo from './Models/todoModel.js';
+import addTask from './Views/todoView.js'
 import List from './Models/listModel.js';
 
 function createHomePage() {
@@ -17,6 +18,10 @@ function createHomePage() {
     addTaskBtn.src = "/src/Assets/add.png"
     addTaskBtn.classList.add("add-task-btn");
     pageHeader.appendChild(addTaskBtn);
+
+    addTaskBtn.addEventListener("click", () => {
+        addTask();
+    });
 
     const pageContent = document.createElement("div");
     pageContent.classList.add("page-content");
