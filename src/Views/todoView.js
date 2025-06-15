@@ -8,68 +8,88 @@ function addTask() {
     taskForm.classList.add("task-form");
     pageContent.appendChild(taskForm);
 
-    const cancelBtn = document.createElement("button");
-    cancelBtn.classList.add("cancel-btn");
-    cancelBtn.textContent = "Cancel";
-    taskForm.appendChild(cancelBtn);
-
-    const addBtn = document.createElement("button");
-    addBtn.classList.add("add-btn");
-    addBtn.textContent = "Add Task";
-    taskForm.appendChild(addBtn);
-
-    const contact = document.createElement("div");
-    contact.classList.add("contact");
+    const overlay = document.createElement("div");
+    overlay.classList.add("overlay");
 
     const formDiv = document.createElement("div");
     formDiv.classList.add("form-div");
     const form = document.createElement("form");
     form.classList.add("contact-form");
 
+    const btnDiv = document.createElement("div");
+    btnDiv.classList.add("btn-div");    
+    form.appendChild(btnDiv);
+
+    const cancelBtn = document.createElement("button");
+    cancelBtn.classList.add("cancel-btn");
+    cancelBtn.textContent = "Cancel";
+    btnDiv.appendChild(cancelBtn);
+
+    const addBtn = document.createElement("button");
+    addBtn.classList.add("add-btn");
+    addBtn.textContent = "Add Task";
+    btnDiv.appendChild(addBtn);
+
+    const titleDiv = document.createElement("div");
+    titleDiv.classList.add("title-div");    
+    form.appendChild(titleDiv);
+
     const title = document.createElement("label");
     title.textContent = "Title";
     title.setAttribute("for", "title");
-    form.appendChild(title);
+    titleDiv.appendChild(title);
 
     const titleInput = document.createElement("input");
     titleInput.type = "text";
     titleInput.placeholder = "Add a title ...";
     titleInput.id = "title";
-    form.appendChild(titleInput);   
+    titleDiv.appendChild(titleInput);
+
+    const descriptionDiv = document.createElement("div");
+    descriptionDiv.classList.add("description-div");    
+    form.appendChild(descriptionDiv);    
 
     const description = document.createElement("label");
-    description.textContent = "Description*";
+    description.textContent = "Description";
     description.setAttribute("for", "description");
-    form.appendChild(description);
+    descriptionDiv.appendChild(description);
 
     const descriptionInput = document.createElement("textarea"); 
     descriptionInput.placeholder = "Add a description ...";
     descriptionInput.id = "description";
-    form.appendChild(descriptionInput);
+    descriptionDiv.appendChild(descriptionInput);
+
+    const dateDiv = document.createElement("div");
+    dateDiv.classList.add("date-div");    
+    form.appendChild(dateDiv);    
 
     const date = document.createElement("label");
     date.textContent = "Due Date";
     date.setAttribute("for", "due-date");
-    form.appendChild(date);
+    dateDiv.appendChild(date);
 
     const dateInput = document.createElement("input");
     dateInput.type = "date";
     dateInput.id = "due-date";
-    form.appendChild(dateInput); 
+    dateDiv.appendChild(dateInput); 
+
+    const priorityDiv = document.createElement("div");
+    priorityDiv.classList.add("priority-div");    
+    form.appendChild(priorityDiv);    
 
     const priority = document.createElement("label");
     priority.textContent = "Priority";
     priority.setAttribute("for", "priority");
-    form.appendChild(priority);
+    priorityDiv.appendChild(priority);
 
     const priorityCheckbox = document.createElement("input");
     priorityCheckbox.type = "checkbox";
     priorityCheckbox.id = "priority";   
-    form.appendChild(priorityCheckbox);
+    priorityDiv.appendChild(priorityCheckbox);
 
     formDiv.appendChild(form);
-    contact.appendChild(formDiv);
-    taskForm.appendChild(contact);
+    overlay.appendChild(formDiv);
+    taskForm.appendChild(overlay);
 
     cancelBtn.addEventListener("click", () => {
         taskForm.remove();

@@ -4,6 +4,7 @@ html, body {
     padding: 0;
     background-color: #8D99AE;
     color: #2B2D42;
+    font-family: "Jua", sans-serif;
 }
 
 .content {
@@ -19,7 +20,6 @@ html, body {
 }
 
 .site-name {
-    font-family: "Jua", sans-serif;
     font-size: 30px;
     margin-left: 30px;
 }
@@ -51,10 +51,82 @@ html, body {
     display: flex;
 }
 
-.task-form {
-    position: absolute;
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
-    background-color: #2B2D42;
-    inset-block-start: 170px;
-    inset-inline-start: 115px;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.form-div {
+    background-color: #EDF2F4;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    width: 450px;
+    height: 350px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn-div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cancel-btn, .add-btn {
+    color: #EDF2F4;
+    background-color: #D90429;
+    border: none;
+    width: 100px;
+    height: 40px;
+    font-family: "Jua", sans-serif;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.cancel-btn {
+    background-color: #EDF2F4;
+    color: #2B2D42;
+}
+
+.title-div, .description-div, .date-div {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="text"],
+input[type="date"],
+textarea {
+    padding: 10px;
+    border: 2px solid #2B2D42;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: "Jua", sans-serif;
+    background-color: #F8F9FA;
+    color: #2B2D42;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    outline: none;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+textarea:focus {
+    border-color: #2B2D42;
+    box-shadow: 0 0 5px rgba(4, 4, 4, 0.5);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 60px;
 }
