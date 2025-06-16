@@ -1,3 +1,5 @@
+import Todo, { addToList } from "../Models/todoModel";
+
 function addTask() {
     const pageContent = document.querySelector(".page-content");
     if (!pageContent) return;
@@ -95,9 +97,11 @@ function addTask() {
         taskForm.remove();
     });
 
-    //addBtn.addEventListener("click", () => {
-    //    const newTask = new Todo(titleInput, descriptionInput, dateInput, "High", "Programming");
-    //});
+    addBtn.addEventListener("click", () => {
+        let newTask = new Todo(titleInput.value, descriptionInput.value, dateInput.value, priorityCheckbox.checked, "Programming");
+        console.log(newTask);
+        addToList(newTask);
+    });
 }
 
 export default addTask;
