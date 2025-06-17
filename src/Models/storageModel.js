@@ -14,8 +14,18 @@ function retriveTask(id) {
     }    
 }
 
+function loadAllTasks() {
+    const tasks = [];
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        const task = localStorage.getItem(key);
+        tasks.push(JSON.parse(task));
+    }
+    return tasks;
+}
+
 function removeTask(id) {
     localStorage.removeItem(id);
 }
 
-export { storeTask, retriveTask, removeTask };
+export { storeTask, retriveTask, removeTask, loadAllTasks };

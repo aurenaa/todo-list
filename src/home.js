@@ -1,6 +1,6 @@
-import Todo from './Models/todoModel.js';
 import addTask from './Views/todoView.js'
 import List from './Models/listModel.js';
+import { storeTask, retrieveTask, removeTask, loadAllTasks } from './Models/storageModel';
 
 function createHomePage() {
     const content = document.querySelector(".content");
@@ -27,9 +27,6 @@ function createHomePage() {
     pageContent.classList.add("page-content");
     content.appendChild(pageContent);
 
-    const myTodo = new Todo("Learn JS", "Complete The Odin Project", "2025-06-15", "High", "Programming");
-    const myList = new List("Default", myTodo);
-
     const sideBar = document.createElement("div");
     sideBar.classList.add("side-bar");
     pageContent.appendChild(sideBar);
@@ -37,6 +34,51 @@ function createHomePage() {
     const mainPage = document.createElement("div");
     mainPage.classList.add("main-page");
     pageContent.appendChild(mainPage);
+
+    document.addEventListener('DOMContentLoaded', () => {
+        displayTasks();
+    });
+
+}
+
+function displayTasks() {
+    const mainPage = document.querySelector(".main-page");
+    if (!mainPage) return;
+        
+    mainPage.innerHTML = '';
+        
+    const tasks = loadAllTasks();
+        
+    tasks.forEach(task => {
+        if (task) {
+            const taskDiv = document.createElement("div");
+            taskDiv.classList.add("task-div");
+                
+            const title = document.createElement("h3");
+            title.textContent = task.title;
+            
+            const description = document.createElement("p");
+            description.textContent = task.description;
+            
+            const dueDate = document.createElement("p");
+            dueDate.textContent = `Due: ${task.dueDate}`;
+            
+            const priority = document.createElement("p");
+            priority.textContent = `Priority: ${task.priority ? 'High' : 'Normal'}`;
+            
+            const list = document.createElement("p");
+            list.textContent = `List: ${task.list}`;
+
+            taskDiv.appendChild(title);
+            taskDiv.appendChild(description);
+            taskDiv.appendChild(dueDate);
+            taskDiv.appendChild(priority);
+            taskDiv.appendChild(list);
+
+            mainPage.appendChild(taskDiv);
+        }
+    });
 }
 
 export default createHomePage;
+export { displayTasks };

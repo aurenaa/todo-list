@@ -1,4 +1,5 @@
 import Todo, { addToList } from "../Models/todoModel";
+import displayTasks from "../home.js";
 
 function addTask() {
     const pageContent = document.querySelector(".page-content");
@@ -101,6 +102,7 @@ function addTask() {
         let newTask = new Todo(titleInput.value, descriptionInput.value, dateInput.value, priorityCheckbox.checked, "Programming");
         console.log(newTask);
         addToList(newTask);
+        displayTasks();
     });
 }
 

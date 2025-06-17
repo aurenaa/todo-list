@@ -1,4 +1,4 @@
-import { storeTask, retrieveTask, removeTask } from './storageModel';
+import { storeTask, retrieveTask, removeTask, loadAllTasks } from './storageModel';
 class Todo {
     constructor(title, description, dueDate, priority, list) {
         this.title = title;
