@@ -140,5 +140,40 @@ textarea {
     width: 200px;
     padding: 15px;
     overflow: hidden;
+    background-color: #EDF2F4;
+    position: relative;
 }
 
+.task-menu {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    inset-inline-start: 180px;
+    inset-block-start: 35px;
+    cursor: pointer;
+}
+
+.task-btn {
+    display: none;
+    width: 120px;
+    height: 60px;
+    background-color: #D90429;
+    border-radius: 8px;
+    position: absolute;
+    inset-inline-start: 80px;
+    inset-block-start: 52px;
+}
+
+.edit-btn, .remove-btn {
+    width: 60px;
+    height: 20px;
+    color: #EDF2F4;
+    border: none;
+    background-color: #D90429;
+    cursor: pointer;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    font-family: "Jua", sans-serif;
+    text-align: start;
+}

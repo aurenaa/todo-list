@@ -53,7 +53,44 @@ function displayTasks() {
         if (task) {
             const taskDiv = document.createElement("div");
             taskDiv.classList.add("task-div");
-                
+
+            const taskMenu = document.createElement("img");
+            taskMenu.classList.add("task-menu");
+            taskMenu.src = "/src/Assets/menu.png"
+
+            const taskBtns = document.createElement("div");
+            taskBtns.classList.add("task-btn");
+            const editBtn = document.createElement("button")
+            editBtn.classList.add("edit-btn");
+            editBtn.textContent = "Edit";
+            const removeBtn = document.createElement("button")
+            removeBtn.classList.add("remove-btn");
+            removeBtn.textContent = "Remove";
+            taskBtns.appendChild(editBtn);
+            taskBtns.appendChild(removeBtn);
+            taskDiv.appendChild(taskBtns);
+
+            var isClicked = true;
+
+            taskMenu.addEventListener("click", () => {
+                if(isClicked) {
+                    taskBtns.style.display = "block";
+                    isClicked = false;
+                }
+                else {
+                    taskBtns.style.display = "none";
+                    isClicked = true;                    
+                }
+            });
+
+            editBtn.addEventListener("click", () => {
+                displayEdit();
+            });
+
+            removeBtn.addEventListener("click", () => {
+                removeTask();
+            });
+             
             const title = document.createElement("h3");
             title.textContent = task.title;
             
@@ -74,6 +111,7 @@ function displayTasks() {
             taskDiv.appendChild(dueDate);
             taskDiv.appendChild(priority);
             taskDiv.appendChild(list);
+            taskDiv.appendChild(taskMenu);
 
             mainPage.appendChild(taskDiv);
         }
