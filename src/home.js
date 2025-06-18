@@ -1,4 +1,5 @@
 import addTask from './Views/todoView.js'
+import deleteTask from './Views/removeTodoView.js';
 import List from './Models/listModel.js';
 import { storeTask, retrieveTask, removeTask, loadAllTasks } from './Models/storageModel';
 
@@ -62,7 +63,7 @@ function displayTasks() {
             taskBtns.classList.add("task-btn");
             const editBtn = document.createElement("button")
             editBtn.classList.add("edit-btn");
-            editBtn.textContent = "Edit";
+            editBtn.textContent = "Edit..";
             const removeBtn = document.createElement("button")
             removeBtn.classList.add("remove-btn");
             removeBtn.textContent = "Remove";
@@ -84,11 +85,11 @@ function displayTasks() {
             });
 
             editBtn.addEventListener("click", () => {
-                displayEdit();
+                displayEdit(task.id);
             });
 
             removeBtn.addEventListener("click", () => {
-                removeTask();
+                deleteTask(task.id, taskDiv);
             });
              
             const title = document.createElement("h3");

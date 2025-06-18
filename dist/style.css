@@ -165,7 +165,7 @@ textarea {
 }
 
 .edit-btn, .remove-btn {
-    width: 60px;
+    width: 100px;
     height: 20px;
     color: #EDF2F4;
     border: none;
@@ -176,4 +176,29 @@ textarea {
     margin-left: 10px;
     font-family: "Jua", sans-serif;
     text-align: start;
+}
+
+.edit-btn:hover, .remove-btn:hover, .add-btn:hover, .delete-btn:hover {
+    background-color: #c30323;
+}
+
+.delete-todo {
+    background-color: #EDF2F4;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    width: 350px;
+    height: 150px;
+    text-align: center;
+}
+
+.delete-btn {
+    color: #EDF2F4;
+    background-color: #D90429;
+    border: none;
+    width: 100px;
+    height: 40px;
+    font-family: "Jua", sans-serif;
+    cursor: pointer;
+    border-radius: 10px;
 }
