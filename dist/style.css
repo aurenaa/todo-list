@@ -87,7 +87,7 @@ html, body {
     justify-content: space-between;
 }
 
-.cancel-btn, .add-btn {
+.cancel-btn, .add-btn, .edit-btn-form {
     color: #EDF2F4;
     background-color: #D90429;
     border: none;
@@ -178,7 +178,7 @@ textarea {
     text-align: start;
 }
 
-.edit-btn:hover, .remove-btn:hover, .add-btn:hover, .delete-btn:hover {
+.edit-btn:hover, .remove-btn:hover, .add-btn:hover, .delete-btn:hover, .edit-btn:hover {
     background-color: #c30323;
 }
 

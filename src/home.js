@@ -1,5 +1,6 @@
 import addTask from './Views/todoView.js'
 import deleteTask from './Views/removeTodoView.js';
+import editTask from './Views/editTodoView.js';
 import List from './Models/listModel.js';
 import { storeTask, retrieveTask, removeTask, loadAllTasks } from './Models/storageModel';
 
@@ -42,6 +43,8 @@ function createHomePage() {
 
 }
 
+let activeTaskBtns = null; 
+
 function displayTasks() {
     const mainPage = document.querySelector(".main-page");
     if (!mainPage) return;
@@ -71,21 +74,22 @@ function displayTasks() {
             taskBtns.appendChild(removeBtn);
             taskDiv.appendChild(taskBtns);
 
-            var isClicked = true;
-
             taskMenu.addEventListener("click", () => {
-                if(isClicked) {
-                    taskBtns.style.display = "block";
-                    isClicked = false;
+                if (activeTaskBtns && activeTaskBtns !== taskBtns) {
+                    activeTaskBtns.style.display = "none"; 
                 }
-                else {
-                    taskBtns.style.display = "none";
-                    isClicked = true;                    
+
+                if (taskBtns.style.display === "block") {
+                    taskBtns.style.display = "none"; 
+                    activeTaskBtns = null;
+                } else {
+                    taskBtns.style.display = "block"; 
+                    activeTaskBtns = taskBtns;
                 }
             });
 
             editBtn.addEventListener("click", () => {
-                displayEdit(task.id);
+                editTask(task.id, taskDiv);
             });
 
             removeBtn.addEventListener("click", () => {
