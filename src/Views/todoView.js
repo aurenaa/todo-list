@@ -19,6 +19,7 @@ function addTask() {
     const form = document.createElement("form");
     form.classList.add("contact-form");
 
+    //buttons creation
     const btnDiv = document.createElement("div");
     btnDiv.classList.add("btn-div");    
     form.appendChild(btnDiv);
@@ -33,6 +34,7 @@ function addTask() {
     addBtn.textContent = "Add Task";
     btnDiv.appendChild(addBtn);
 
+    //title form
     const titleDiv = document.createElement("div");
     titleDiv.classList.add("title-div");    
     form.appendChild(titleDiv);
@@ -48,6 +50,7 @@ function addTask() {
     titleInput.id = "title";
     titleDiv.appendChild(titleInput);
 
+    //description form
     const descriptionDiv = document.createElement("div");
     descriptionDiv.classList.add("description-div");    
     form.appendChild(descriptionDiv);    
@@ -62,6 +65,7 @@ function addTask() {
     descriptionInput.id = "description";
     descriptionDiv.appendChild(descriptionInput);
 
+    //date form
     const dateDiv = document.createElement("div");
     dateDiv.classList.add("date-div");    
     form.appendChild(dateDiv);    
@@ -76,9 +80,14 @@ function addTask() {
     dateInput.id = "due-date";
     dateDiv.appendChild(dateInput); 
 
+    //priority form
+    const priorityList = document.createElement("div");
+    priorityList.classList.add("priority-list");
+    form.appendChild(priorityList);
+
     const priorityDiv = document.createElement("div");
     priorityDiv.classList.add("priority-div");    
-    form.appendChild(priorityDiv);    
+    priorityList.appendChild(priorityDiv);  
 
     const priority = document.createElement("label");
     priority.textContent = "Priority";
@@ -90,10 +99,32 @@ function addTask() {
     priorityCheckbox.id = "priority";   
     priorityDiv.appendChild(priorityCheckbox);
 
+    //dropdown selection
+    const dropDownDiv = document.createElement("div")
+    dropDownDiv.classList.add("dropdown-div");    
+    priorityList.appendChild(dropDownDiv);  
+
+    const list = document.createElement("label");
+    list.textContent = "List";
+    list.setAttribute("for", "list");
+    dropDownDiv.appendChild(list);
+
+    const listInput = document.createElement("select");
+    listInput.id = "list-dropdown";
+    dropDownDiv.appendChild(listInput);
+    
+    //initial list
+    const allTasksList = document.createElement("option");
+    allTasksList.value = "allTasks";
+    allTasksList.textContent = "All tasks";
+    listInput.appendChild(allTasksList);
+    
+    //page outlines
     formDiv.appendChild(form);
     overlay.appendChild(formDiv);
     taskForm.appendChild(overlay);
 
+    //buttons event listeners
     cancelBtn.addEventListener("click", () => {
         taskForm.remove();
     });

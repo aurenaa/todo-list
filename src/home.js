@@ -41,6 +41,60 @@ function createHomePage() {
         displayTasks();
     });
 
+    //sidebar
+    //div for all the lists
+    const lists = document.createElement("div");
+    lists.classList.add("lists");
+    sideBar.appendChild(lists);
+
+    const all = document.createElement("div")
+    all.classList.add("all");
+    lists.appendChild(all);    
+
+    const iconAll = document.createElement("img");
+    iconAll.classList.add("icon-all");
+    iconAll.src = "/src/Assets/home.png"
+    all.appendChild(iconAll);
+
+    const textAll = document.createElement("p");
+    textAll.textContent = "All tasks";
+    all.appendChild(textAll);
+
+    //div for adding list
+    const addList = document.createElement("div");
+    addList.classList.add("add-list");
+    sideBar.appendChild(addList);
+
+    const addListBtn = document.createElement("img");
+    addListBtn.src = "/src/Assets/add.png"
+    addListBtn.classList.add("add-task-btn");
+    addList.appendChild(addListBtn);
+
+    const addListText = document.createElement("p");
+    addListText.textContent = "Create new list";
+    addListText.classList.add("add-list-text");
+    addList.appendChild(addListText);
+}
+
+function displayLists() {
+    const sideBar = document.querySelector(".side-bar");
+    if (!sideBar) return;
+        
+    sideBar.innerHTML = '';
+        
+    const lists = loadAllLists();
+        
+    lists.forEach(list => {
+        if (list) {
+            const listDiv = document.createElement("div");
+            listDiv.classList.add("list-div");
+             
+            const title = document.createElement("p");
+            title.textContent = list.name;
+            listDiv.appendChild(title);
+            sideBar.appendChild(listDiv);
+        }
+    });
 }
 
 let activeTaskBtns = null; 
@@ -124,4 +178,4 @@ function displayTasks() {
 }
 
 export default createHomePage;
-export { displayTasks };
+export { displayTasks, displayLists };
