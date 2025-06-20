@@ -1,5 +1,6 @@
 import Todo, { addToList } from "../Models/todoModel";
 import displayTasks from "../home.js";
+import { storeTask, storeList, retrieveTask, removeTask, removeList, loadAllTasks, loadAllLists } from '../Models/storageModel';
 
 function addTask() {
     const pageContent = document.querySelector(".page-content");
@@ -115,9 +116,22 @@ function addTask() {
     
     //initial list
     const allTasksList = document.createElement("option");
-    allTasksList.value = "allTasks";
     allTasksList.textContent = "All tasks";
     listInput.appendChild(allTasksList);
+
+    //loading lists from local storage
+    const lists = loadAllLists();
+        
+    lists.forEach(list => {
+        if (list) {
+            const listDiv = document.createElement("div");
+            listDiv.classList.add("list-div");
+
+            const taskList = document.createElement("option");
+            taskList.textContent = list.name;
+            listInput.appendChild(taskList);
+        }
+    });
     
     //page outlines
     formDiv.appendChild(form);
@@ -130,7 +144,7 @@ function addTask() {
     });
 
     addBtn.addEventListener("click", () => {
-        let newTask = new Todo(titleInput.value, descriptionInput.value, dateInput.value, priorityCheckbox.checked, "Programming");
+        let newTask = new Todo(titleInput.value, descriptionInput.value, dateInput.value, priorityCheckbox.checked, listInput.value);
         console.log(newTask);
         addToList(newTask);
         displayTasks();

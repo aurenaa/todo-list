@@ -15,7 +15,7 @@ function addList() {
     overlay.classList.add("overlay");
 
     const formDiv = document.createElement("div");
-    formDiv.classList.add("form-div");
+    formDiv.classList.add("form-div-list");
     const form = document.createElement("form");
     form.classList.add("contact-form");
 

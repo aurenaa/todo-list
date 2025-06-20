@@ -76,6 +76,15 @@ html, body {
     height: 350px;
 }
 
+.form-div-list {
+    background-color: #EDF2F4;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    width: 450px;
+    height: 150px;    
+}
+
 .contact-form {
     display: flex;
     flex-direction: column;
@@ -103,7 +112,7 @@ html, body {
     color: #2B2D42;
 }
 
-.title-div, .description-div, .date-div {
+.title-div, .description-div, .date-div, .name-div {
     display: flex;
     flex-direction: column;
 }
@@ -241,6 +250,7 @@ select {
     grid-template-rows: repeat(8, 1fr);
     gap: 5px;
     width: 100%;
+    justify-content: center;
 }
 
 .all p, .list-div p, .add-list-text {
@@ -254,9 +264,6 @@ select {
     margin-left: 10px;
 }
 
-.list-div {
-    margin-left: 10px;
-}
 
 .list-div p {
     padding: 10px;
