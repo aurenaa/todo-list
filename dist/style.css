@@ -236,6 +236,13 @@ select {
     justify-content: space-between;
 }
 
+.lists {
+    display: grid;
+    grid-template-rows: repeat(8, 1fr);
+    gap: 5px;
+    width: 100%;
+}
+
 .all p, .list-div p, .add-list-text {
     font-size: 20px;
     padding: 0;
@@ -245,5 +252,13 @@ select {
 .all img {
     width: 30px;
     margin-left: 10px;
+}
+
+.list-div {
+    margin-left: 10px;
+}
+
+.list-div p {
+    padding: 10px;
 }
 

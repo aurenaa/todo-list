@@ -1,3 +1,4 @@
+import { storeTask, storeList, retrieveTask, removeTask, removeList, loadAllTasks, loadAllLists } from './storageModel';
 class List {
     constructor(name, todos = []) {
         this.name = name;
@@ -17,14 +18,10 @@ function generateID() {
     return maxID + 1;
 }
 
-function addToStorage(list) {
+function addToList(list) {
     list.id = generateID();
-    storeTask(list);  
-}
-
-function addTaskToList(task) {
-
+    storeList(list);  
 }
 
 export default List;
-export { generateID, addToStorage, addTaskToList };
+export { generateID, addToList };

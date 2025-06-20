@@ -1,8 +1,8 @@
 import addTask from './Views/todoView.js'
+import addList from './Views/listView.js'
 import deleteTask from './Views/removeTodoView.js';
 import editTask from './Views/editTodoView.js';
-import List from './Models/listModel.js';
-import { storeTask, retrieveTask, removeTask, loadAllTasks } from './Models/storageModel';
+import { storeTask, storeList, retrieveTask, removeTask, removeList, loadAllTasks, loadAllLists } from './Models/storageModel';
 
 function createHomePage() {
     const content = document.querySelector(".content");
@@ -39,17 +39,14 @@ function createHomePage() {
 
     document.addEventListener('DOMContentLoaded', () => {
         displayTasks();
+        displayLists();
     });
 
     //sidebar
     //div for all the lists
-    const lists = document.createElement("div");
-    lists.classList.add("lists");
-    sideBar.appendChild(lists);
-
     const all = document.createElement("div")
     all.classList.add("all");
-    lists.appendChild(all);    
+    sideBar.appendChild(all);    
 
     const iconAll = document.createElement("img");
     iconAll.classList.add("icon-all");
@@ -60,27 +57,35 @@ function createHomePage() {
     textAll.textContent = "All tasks";
     all.appendChild(textAll);
 
+    const lists = document.createElement("div");
+    lists.classList.add("lists");
+    sideBar.appendChild(lists);
+
     //div for adding list
-    const addList = document.createElement("div");
-    addList.classList.add("add-list");
-    sideBar.appendChild(addList);
+    const addListDiv = document.createElement("div");
+    addListDiv.classList.add("add-list");
+    sideBar.appendChild(addListDiv);
 
     const addListBtn = document.createElement("img");
     addListBtn.src = "/src/Assets/add.png"
     addListBtn.classList.add("add-task-btn");
-    addList.appendChild(addListBtn);
+    addListDiv.appendChild(addListBtn);
+
+    addListBtn.addEventListener("click", () => {
+        addList();
+    });
 
     const addListText = document.createElement("p");
     addListText.textContent = "Create new list";
     addListText.classList.add("add-list-text");
-    addList.appendChild(addListText);
+    addListDiv.appendChild(addListText);
 }
 
 function displayLists() {
-    const sideBar = document.querySelector(".side-bar");
-    if (!sideBar) return;
+    const listsContainer = document.querySelector(".lists");
+    if (!listsContainer) return;
         
-    sideBar.innerHTML = '';
+    listsContainer.innerHTML = '';  
         
     const lists = loadAllLists();
         
@@ -92,7 +97,7 @@ function displayLists() {
             const title = document.createElement("p");
             title.textContent = list.name;
             listDiv.appendChild(title);
-            sideBar.appendChild(listDiv);
+            listsContainer.appendChild(listDiv);
         }
     });
 }
