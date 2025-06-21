@@ -23,5 +23,18 @@ function addToList(list) {
     storeList(list);  
 }
 
+function addTaskToList(listName, taskId) {
+    const allLists = loadAllLists();
+    const targetList = allLists.find(list => list.name === listName);
+
+    if (targetList) {
+        targetList.todos.push(taskId);
+
+        storeList(targetList);
+    } else {
+        console.log("No list with that name.");
+    }
+}
+
 export default List;
-export { generateID, addToList };
+export { generateID, addToList, addTaskToList };

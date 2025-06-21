@@ -23,7 +23,8 @@ function generateID() {
 
 function addToList(task) {
     task.id = generateID();
-    storeTask(task);  
+    storeTask(task);
+    return task.id; 
 }
 
 export default Todo;

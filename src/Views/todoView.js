@@ -1,4 +1,5 @@
 import Todo, { addToList } from "../Models/todoModel";
+import { addTaskToList } from "../Models/listModel";
 import displayTasks from "../home.js";
 import { storeTask, storeList, retrieveTask, removeTask, removeList, loadAllTasks, loadAllLists } from '../Models/storageModel';
 
@@ -144,9 +145,18 @@ function addTask() {
     });
 
     addBtn.addEventListener("click", () => {
-        let newTask = new Todo(titleInput.value, descriptionInput.value, dateInput.value, priorityCheckbox.checked, listInput.value);
-        console.log(newTask);
-        addToList(newTask);
+        let newTask = new Todo(
+            titleInput.value,
+            descriptionInput.value,
+            dateInput.value,
+            priorityCheckbox.checked,
+            listInput.value
+        );
+
+        const taskID = addToList(newTask); // dodaje u storage i dobija id
+        addTaskToList(listInput.value, taskID); // dodaje id u odgovarajuću listu
+
+        console.log(newTask.id);
         displayTasks();
     });
 }

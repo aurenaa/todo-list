@@ -61,7 +61,7 @@ function addList() {
     });
 
     addBtn.addEventListener("click", () => {
-        let newList = new List(nameInput.value, "Todo1");
+        let newList = new List(nameInput.value, );
         console.log(newList);
         addToList(newList);
         displayLists();
