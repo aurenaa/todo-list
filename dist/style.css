@@ -164,6 +164,18 @@ textarea {
     cursor: pointer;
 }
 
+.done-div {
+    position: absolute;
+    inset-inline-start: 190px;
+    inset-block-start: 185px;   
+    display: flex;
+    gap: 3px;
+}
+
+.done-checkbox, #priority {
+  accent-color: #D90429;
+}
+
 .task-btn {
     display: none;
     width: 120px;
@@ -240,9 +252,14 @@ select {
     cursor: pointer;
     width: 250px;
     height: 40px;
-    background-color: #8D99AE;
+    background-color: #EDF2F4;
+    border: #8D99AE solid;
     border-radius: 5px;
     justify-content: space-between;
+}
+
+.all, .add-list {
+    background-color: #8D99AE;    
 }
 
 .lists {

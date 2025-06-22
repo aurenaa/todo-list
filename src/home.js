@@ -82,14 +82,16 @@ function createHomePage() {
 }
 
 let activeListTasksIDs = null; 
+let activeList = null;
 
 function displayLists() {
     const listsContainer = document.querySelector(".lists");
     const allLists = document.querySelector(".all");
     if (!listsContainer) return;
+
+    activeList = allLists;
         
     listsContainer.innerHTML = '';  
-        
     const lists = loadAllLists();
         
     lists.forEach(list => {
@@ -104,11 +106,27 @@ function displayLists() {
 
             listDiv.addEventListener("click", () => {
                 activeListTasksIDs = list.todos;
+                listDiv.style.backgroundColor = "#8D99AE";
                 displayTasks(activeListTasksIDs);
+
+                if (activeList && activeList !== listDiv) {
+                    activeList.style.backgroundColor = "#EDF2F4";
+                }
+
+                if (listDiv.style.backgroundColor == "#8D99AE") {
+                    listDiv.style.backgroundColor = "#EDF2F4"
+                    activeList = null;
+                } else {
+                    listDiv.style.backgroundColor = "#8D99AE";
+                    activeList = listDiv;
+                }
             });
 
             allLists.addEventListener("click", () => {
                 displayTasks();
+                activeList = allLists;
+                listDiv.style.backgroundColor = "#EDF2F4"
+                activeList.style.backgroundColor = "#8D99AE";                               
             });
         }
     });
@@ -131,7 +149,6 @@ function displayTasks(activeListTasksIDs) {
                 if (task.id == activeListTasksIDs[i]) {
                     const taskElement = createTaskElement(task);
                     mainPage.appendChild(taskElement);
-                
                     }
                 }
             }
@@ -190,6 +207,7 @@ function createTaskElement(task) {
     });
 
     const title = document.createElement("h3");
+    title.classList.add("task-title");
     title.textContent = task.title;
 
     const description = document.createElement("p");
@@ -204,12 +222,41 @@ function createTaskElement(task) {
     const list = document.createElement("p");
     list.textContent = `List: ${task.list}`;
 
+    //done checkbox
+    const doneDiv = document.createElement("div");
+    doneDiv.classList.add("done-div");
+
+    const doneBox = document.createElement("input");
+    doneBox.classList.add("done-checkbox");
+    doneBox.type = "checkbox";
+    doneBox.id = "done"; 
+
+    const done = document.createElement("label");
+    done.textContent = "Done";
+    done.setAttribute("for", "done");
+
+    doneDiv.appendChild(doneBox);
+    doneDiv.appendChild(done);
+
+    doneBox.addEventListener("change", function() {
+        if (this.checked) {
+            const titleName = document.querySelector(".task-title");
+            titleName.style.textDecoration = "line-through";
+        }
+        else {
+            const titleName = document.querySelector(".task-title");
+            titleName.style.textDecoration = "none";
+        }
+    });
+
+    //all task div components
     taskDiv.appendChild(title);
     taskDiv.appendChild(description);
     taskDiv.appendChild(dueDate);
     taskDiv.appendChild(priority);
     taskDiv.appendChild(list);
     taskDiv.appendChild(taskMenu);
+    taskDiv.appendChild(doneDiv);
 
     return taskDiv;
 }
