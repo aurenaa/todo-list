@@ -1,13 +1,14 @@
-import { removeTask, retriveTask } from "../Models/storageModel.js";
-import Todo, { addToList } from "../Models/todoModel";
-import displayTasks from "../home.js";
+import { removeTask, retriveTask, loadAllLists } from "../Models/storageModel.js";
+import { Todo, addToList } from "../Models/todoModel";
+import { addTaskToList } from "../Models/listModel";
+import displayTasks, { displayLists } from "../home.js";
 
 function editTask(id, taskDiv) {
     const pageContent = document.querySelector(".page-content");
     if (!pageContent) return;
 
+    //getting the task to edit
     const task = retriveTask(id);
-
     if (document.querySelector(".task-form")) return;
 
     const taskForm = document.createElement("div");
@@ -22,6 +23,7 @@ function editTask(id, taskDiv) {
     const form = document.createElement("form");
     form.classList.add("contact-form");
 
+    //buttons
     const btnDiv = document.createElement("div");
     btnDiv.classList.add("btn-div");    
     form.appendChild(btnDiv);
@@ -36,6 +38,7 @@ function editTask(id, taskDiv) {
     editBtn.textContent = "Edit";
     btnDiv.appendChild(editBtn);
 
+    //form elements
     const titleDiv = document.createElement("div");
     titleDiv.classList.add("title-div");    
     form.appendChild(titleDiv);
@@ -80,9 +83,14 @@ function editTask(id, taskDiv) {
     dateInput.id = "due-date";
     dateDiv.appendChild(dateInput);
 
+    //priority form
+    const priorityList = document.createElement("div");
+    priorityList.classList.add("priority-list");
+    form.appendChild(priorityList);
+
     const priorityDiv = document.createElement("div");
     priorityDiv.classList.add("priority-div");    
-    form.appendChild(priorityDiv);    
+    priorityList.appendChild(priorityDiv);  
 
     const priority = document.createElement("label");
     priority.textContent = "Priority";
@@ -93,6 +101,44 @@ function editTask(id, taskDiv) {
     priorityCheckbox.type = "checkbox";
     priorityCheckbox.id = "priority";   
     priorityDiv.appendChild(priorityCheckbox);
+
+    //dropdown selection
+    const dropDownDiv = document.createElement("div")
+    dropDownDiv.classList.add("dropdown-div");    
+    priorityList.appendChild(dropDownDiv);  
+
+    const list = document.createElement("label");
+    list.textContent = "List";
+    list.setAttribute("for", "list");
+    dropDownDiv.appendChild(list);
+
+    const listInput = document.createElement("select");
+    listInput.id = "list-dropdown";
+    dropDownDiv.appendChild(listInput);
+    
+    //initial list
+    const currentList = task.list || "Allt tasks";
+
+    const allTasksList = document.createElement("option");
+    allTasksList.textContent = "All tasks";
+    if (currentList === "All tasks") {
+        allTasksList.selected = true;
+    }
+    listInput.appendChild(allTasksList);
+
+    //loading lists from local storage
+    const lists = loadAllLists();
+        
+    lists.forEach(list => {
+        if (list) {
+            const taskList = document.createElement("option");
+            taskList.textContent = list.name;
+            if (list.name === currentList) {
+                taskList.selected = true;
+            }
+            listInput.appendChild(taskList);
+        }
+    });
 
     if (task.priority) {
         priorityCheckbox.checked = true;
@@ -106,6 +152,7 @@ function editTask(id, taskDiv) {
         taskForm.remove();
     });
 
+    //making a new task and removing the old one
     editBtn.addEventListener("click", () => {
         if (!titleInput.value) {
             titleInput.value = titleInput.placeholder;
@@ -116,12 +163,15 @@ function editTask(id, taskDiv) {
         if (!dateInput.value) {
             dateInput.value = dateInput.placeholder;
         }
-        let editedTask = new Todo(titleInput.value, descriptionInput.value, dateInput.value, priorityCheckbox.checked, "Programming");
+        const selectedList = listInput.value;
+
+        let editedTask = new Todo(titleInput.value, descriptionInput.value, dateInput.value, priorityCheckbox.checked, selectedList, task.done, task.id);
         console.log(editedTask);
         addToList(editedTask);
+        addTaskToList(selectedList, task.id);
         taskDiv.remove();
-        removeTask(id);
         displayTasks();
+        displayLists();
     });
 }
 

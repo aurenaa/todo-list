@@ -1,7 +1,7 @@
 import { Todo, addToList } from "../Models/todoModel";
 import { addTaskToList } from "../Models/listModel";
 import displayTasks from "../home.js";
-import { storeTask, storeList, retrieveTask, removeTask, removeList, loadAllTasks, loadAllLists } from '../Models/storageModel';
+import { loadAllLists } from '../Models/storageModel';
 
 function addTask() {
     const pageContent = document.querySelector(".page-content");
@@ -145,17 +145,10 @@ function addTask() {
     });
 
     addBtn.addEventListener("click", () => {
-        let newTask = new Todo(
-            titleInput.value,
-            descriptionInput.value,
-            dateInput.value,
-            priorityCheckbox.checked,
-            listInput.value,
-            "false"
-        );
+        let newTask = new Todo(titleInput.value, descriptionInput.value, dateInput.value, priorityCheckbox.checked, listInput.value, false);
 
-        const taskID = addToList(newTask); // dodaje u storage i dobija id
-        addTaskToList(listInput.value, taskID); // dodaje id u odgovarajuću listu
+        const taskID = addToList(newTask);
+        addTaskToList(listInput.value, taskID);
 
         console.log(newTask.id);
         displayTasks();
