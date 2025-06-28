@@ -1,11 +1,12 @@
 import { storeTask, retrieveTask, removeTask, loadAllTasks } from './storageModel';
 class Todo {
-    constructor(title, description, dueDate, priority, list) {
+    constructor(title, description, dueDate, priority, list, done) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
         this.list = list;
+        this.done = done;
     }
 }
 
@@ -27,5 +28,15 @@ function addToList(task) {
     return task.id; 
 }
 
-export default Todo;
-export { generateID, addToList };
+function updateTask(taskId, doneValue) {
+    const allTasks = loadAllTasks();
+    const targetTask = allTasks.find(task => task.id === taskId);
+    if (targetTask) {
+        targetTask.done = doneValue;
+        storeTask(targetTask);
+    } else {
+        console.log("No task with that ID.");
+    }
+}
+
+export { Todo, generateID, addToList, updateTask };

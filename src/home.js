@@ -1,4 +1,5 @@
 import addTask from './Views/todoView.js'
+import { updateTask } from './Models/todoModel.js'
 import addList from './Views/listView.js'
 import deleteTask from './Views/removeTodoView.js';
 import editTask from './Views/editTodoView.js';
@@ -238,14 +239,18 @@ function createTaskElement(task) {
     doneDiv.appendChild(doneBox);
     doneDiv.appendChild(done);
 
-    doneBox.addEventListener("change", function() {
+    if (task.done) {
+        title.style.textDecoration = "line-through";
+        doneBox.checked = true;
+    }
+
+    doneBox.addEventListener("change", function () {
         if (this.checked) {
-            const titleName = document.querySelector(".task-title");
-            titleName.style.textDecoration = "line-through";
-        }
-        else {
-            const titleName = document.querySelector(".task-title");
-            titleName.style.textDecoration = "none";
+            title.style.textDecoration = "line-through";
+            updateTask(task.id, true); 
+        } else {
+            title.style.textDecoration = "none";
+            updateTask(task.id, false);
         }
     });
 

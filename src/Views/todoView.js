@@ -1,4 +1,4 @@
-import Todo, { addToList } from "../Models/todoModel";
+import { Todo, addToList } from "../Models/todoModel";
 import { addTaskToList } from "../Models/listModel";
 import displayTasks from "../home.js";
 import { storeTask, storeList, retrieveTask, removeTask, removeList, loadAllTasks, loadAllLists } from '../Models/storageModel';
@@ -150,7 +150,8 @@ function addTask() {
             descriptionInput.value,
             dateInput.value,
             priorityCheckbox.checked,
-            listInput.value
+            listInput.value,
+            "false"
         );
 
         const taskID = addToList(newTask); // dodaje u storage i dobija id
