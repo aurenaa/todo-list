@@ -1,4 +1,5 @@
 import { removeTask, retrieveTask } from "../Models/storageModel.js";
+import { removeTaskFromList } from "../Models/listModel";
 
 function deleteTask(id, taskDiv) {
     const pageContent = document.querySelector(".page-content");
@@ -41,9 +42,10 @@ function deleteTask(id, taskDiv) {
     });
 
     deleteBtn.addEventListener("click", () => {
-        removeTask(id);
         const task = retrieveTask(id);
         const selectedList = task.list;
+
+        removeTask(id);
         removeTaskFromList(selectedList, id);
         taskDiv.remove();
         overlay.remove();

@@ -6,7 +6,8 @@ function storeList(newList) {
     localStorage.setItem(`list-${newList.id}`, JSON.stringify(newList));
 }
 
-function retriveTask(id) {
+function retrieveTask(id) {
+    console.log(`task-${id}`);
     const storedTask = localStorage.getItem(`task-${id}`);
     console.log("task stored:", storedTask);
     if(storedTask) {
@@ -50,4 +51,4 @@ function removeList(id) {
     localStorage.removeItem(`list-${id}`);
 }
 
-export { storeTask, storeList, retriveTask, removeTask, removeList, loadAllTasks, loadAllLists };
+export { storeTask, storeList, retrieveTask, removeTask, removeList, loadAllTasks, loadAllLists };

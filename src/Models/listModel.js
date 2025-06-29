@@ -44,12 +44,12 @@ function addTaskToList(listName, taskId) {
     const targetList = allLists.find(list => list.name === listName);
 
     if (targetList) {
-
-        if (!targetList.todos.includes(taskId)) {
-            targetList.todos.push(taskId);
-            storeList(targetList);
-        }
-    } 
+        targetList.todos.push(taskId);
+        storeList(targetList);
+    }
+    else if (targetList == "All tasks") {
+        return;
+    }
     else {
         console.log("No list with that name.");
     }

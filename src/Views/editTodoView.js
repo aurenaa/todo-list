@@ -177,8 +177,7 @@ function editTask(id, taskDiv) {
                 addTaskToList(selectedList, task.id);
             }
         }
-        
-        addTaskToList(selectedList, task.id);
+
         taskDiv.remove();
         displayTasks();
         displayLists();
