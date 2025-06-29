@@ -20,6 +20,7 @@ function createHomePage() {
     const addTaskBtn = document.createElement("img");
     addTaskBtn.src = "/src/Assets/add.png"
     addTaskBtn.classList.add("add-task-btn");
+    addTaskBtn.title = "Add task";
     pageHeader.appendChild(addTaskBtn);
 
     addTaskBtn.addEventListener("click", () => {
@@ -57,6 +58,7 @@ function createHomePage() {
     const textAll = document.createElement("p");
     textAll.textContent = "All tasks";
     all.appendChild(textAll);
+    all.title = "All tasks";
 
     const lists = document.createElement("div");
     lists.classList.add("lists");
@@ -169,6 +171,7 @@ function createTaskElement(task) {
     const taskMenu = document.createElement("img");
     taskMenu.classList.add("task-menu");
     taskMenu.src = "/src/Assets/menu.png";
+    taskMenu.title = "Show actions";
 
     const taskBtns = document.createElement("div");
     taskBtns.classList.add("task-btn");
@@ -231,6 +234,7 @@ function createTaskElement(task) {
     doneBox.classList.add("done-checkbox");
     doneBox.type = "checkbox";
     doneBox.id = "done"; 
+    doneBox. title = "Mark task as complete";
 
     const done = document.createElement("label");
     done.textContent = "Done";

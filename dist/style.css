@@ -262,6 +262,10 @@ select {
     background-color: #8D99AE;    
 }
 
+.all:hover, .add-list:hover, .list-div:hover {
+    box-shadow: 2px 2px 2px #2B2D42;
+}
+
 .lists {
     display: grid;
     grid-template-rows: repeat(8, 1fr);

@@ -23,18 +23,37 @@ function addToList(list) {
     storeList(list);  
 }
 
+function removeTaskFromList(listName, taskID) {
+    if (listName === "All tasks") return;
+
+    const allLists = loadAllLists();
+    const targetList = allLists.find(list => list.name === listName);
+
+    console.log("targetlist", targetList);
+    if (targetList) {
+        targetList.todos = targetList.todos.filter(id => id !== taskID);
+        storeList(targetList);
+    } 
+    else {
+        console.log("No list with that name.");
+    }
+}
+
 function addTaskToList(listName, taskId) {
     const allLists = loadAllLists();
     const targetList = allLists.find(list => list.name === listName);
 
     if (targetList) {
-        targetList.todos.push(taskId);
 
-        storeList(targetList);
-    } else {
+        if (!targetList.todos.includes(taskId)) {
+            targetList.todos.push(taskId);
+            storeList(targetList);
+        }
+    } 
+    else {
         console.log("No list with that name.");
     }
 }
 
 export default List;
-export { generateID, addToList, addTaskToList };
+export { generateID, addToList, addTaskToList, removeTaskFromList };

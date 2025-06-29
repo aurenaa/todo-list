@@ -1,5 +1,4 @@
-import { removeTask } from "../Models/storageModel.js";
-import displayTasks from "../home.js";
+import { removeTask, retrieveTask } from "../Models/storageModel.js";
 
 function deleteTask(id, taskDiv) {
     const pageContent = document.querySelector(".page-content");
@@ -43,6 +42,9 @@ function deleteTask(id, taskDiv) {
 
     deleteBtn.addEventListener("click", () => {
         removeTask(id);
+        const task = retrieveTask(id);
+        const selectedList = task.list;
+        removeTaskFromList(selectedList, id);
         taskDiv.remove();
         overlay.remove();
     });

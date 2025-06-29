@@ -1,6 +1,6 @@
 import { removeTask, retriveTask, loadAllLists } from "../Models/storageModel.js";
 import { Todo, addToList } from "../Models/todoModel";
-import { addTaskToList } from "../Models/listModel";
+import { addTaskToList, removeTaskFromList } from "../Models/listModel";
 import displayTasks, { displayLists } from "../home.js";
 
 function editTask(id, taskDiv) {
@@ -117,7 +117,7 @@ function editTask(id, taskDiv) {
     dropDownDiv.appendChild(listInput);
     
     //initial list
-    const currentList = task.list || "Allt tasks";
+    const currentList = task.list || "All tasks";
 
     const allTasksList = document.createElement("option");
     allTasksList.textContent = "All tasks";
@@ -166,8 +166,18 @@ function editTask(id, taskDiv) {
         const selectedList = listInput.value;
 
         let editedTask = new Todo(titleInput.value, descriptionInput.value, dateInput.value, priorityCheckbox.checked, selectedList, task.done, task.id);
-        console.log(editedTask);
         addToList(editedTask);
+
+        if (selectedList !== currentList) {
+            if (currentList !== "All tasks") {
+                removeTaskFromList(currentList, task.id);
+            }
+
+            if (selectedList !== "All tasks") {
+                addTaskToList(selectedList, task.id);
+            }
+        }
+        
         addTaskToList(selectedList, task.id);
         taskDiv.remove();
         displayTasks();
