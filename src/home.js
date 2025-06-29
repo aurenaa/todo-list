@@ -2,6 +2,7 @@ import addTask from './Views/todoView.js'
 import { updateTask } from './Models/todoModel.js'
 import addList from './Views/listView.js'
 import deleteTask from './Views/removeTodoView.js';
+import archiveTask from './Views/archiveTodoView.js';
 import editTask from './Views/editTodoView.js';
 import { loadAllTasks, loadAllLists } from './Models/storageModel';
 
@@ -195,16 +196,24 @@ function createTaskElement(task) {
     const taskBtns = document.createElement("div");
     taskBtns.classList.add("task-btn");
 
+    //edit button
     const editBtn = document.createElement("button");
     editBtn.classList.add("edit-btn");
     editBtn.textContent = "Edit..";
 
+    //remove button
     const removeBtn = document.createElement("button");
     removeBtn.classList.add("remove-btn");
     removeBtn.textContent = "Remove";
 
+    //archive button
+    const archiveBtn = document.createElement("button");
+    archiveBtn.classList.add("archive-btn");
+    archiveBtn.textContent = "Archive";
+
     taskBtns.appendChild(editBtn);
     taskBtns.appendChild(removeBtn);
+    taskBtns.appendChild(archiveBtn);
     taskDiv.appendChild(taskBtns);
 
     taskMenu.addEventListener("click", () => {
@@ -227,6 +236,10 @@ function createTaskElement(task) {
 
     removeBtn.addEventListener("click", () => {
         deleteTask(task.id, taskDiv);
+    });
+
+    archiveBtn.addEventListener("click", () => {
+        archiveTask(task.id, taskDiv);
     });
 
     const title = document.createElement("h3");

@@ -180,7 +180,7 @@ textarea {
 .task-btn {
     display: none;
     width: 120px;
-    height: 60px;
+    height: 90px;
     background-color: #D90429;
     border-radius: 8px;
     position: absolute;
@@ -188,7 +188,7 @@ textarea {
     inset-block-start: 52px;
 }
 
-.edit-btn, .remove-btn {
+.edit-btn, .remove-btn, .archive-btn {
     width: 100px;
     height: 20px;
     color: #EDF2F4;
@@ -220,11 +220,11 @@ select {
     color: #2B2D42;
 }
 
-.edit-btn:hover, .remove-btn:hover, .add-btn:hover, .delete-btn:hover, .edit-btn:hover {
+.edit-btn:hover, .remove-btn:hover, .add-btn:hover, .delete-btn:hover, .edit-btn:hover, .archive-btn:hover, .archive-button:hover {
     background-color: #c30323;
 }
 
-.delete-todo {
+.delete-todo, .archive-todo {
     background-color: #EDF2F4;
     padding: 2rem;
     border-radius: 8px;
@@ -234,7 +234,7 @@ select {
     text-align: center;
 }
 
-.delete-btn {
+.delete-btn, .archive-button {
     color: #EDF2F4;
     background-color: #D90429;
     border: none;
