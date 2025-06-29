@@ -3,7 +3,7 @@ import { updateTask } from './Models/todoModel.js'
 import addList from './Views/listView.js'
 import deleteTask from './Views/removeTodoView.js';
 import editTask from './Views/editTodoView.js';
-import { storeTask, storeList, retrieveTask, removeTask, removeList, loadAllTasks, loadAllLists } from './Models/storageModel';
+import { loadAllTasks, loadAllLists } from './Models/storageModel';
 
 function createHomePage() {
     const content = document.querySelector(".content");
@@ -82,6 +82,25 @@ function createHomePage() {
     addListText.textContent = "Create new list";
     addListText.classList.add("add-list-text");
     addListDiv.appendChild(addListText);
+
+    //archive task
+    const archiveDiv = document.createElement("div");
+    archiveDiv.classList.add("archived-task");
+    sideBar.appendChild(archiveDiv);
+
+    const archivedImg = document.createElement("img");
+    archivedImg.src = "/src/Assets/archive.png";
+    archivedImg.classList.add("archived-task-img");
+    archiveDiv.appendChild(archivedImg);
+
+    archiveDiv.addEventListener("click", () => {
+        console.log("click");
+    });
+
+    const archiveText = document.createElement("p");
+    archiveText.textContent = "Archived tasks";
+    archiveText.classList.add("archived-task-text");
+    archiveDiv.appendChild(archiveText);
 }
 
 let activeListTasksIDs = null; 

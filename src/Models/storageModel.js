@@ -7,9 +7,8 @@ function storeList(newList) {
 }
 
 function retrieveTask(id) {
-    console.log(`task-${id}`);
     const storedTask = localStorage.getItem(`task-${id}`);
-    console.log("task stored:", storedTask);
+
     if(storedTask) {
         return JSON.parse(storedTask);
     }
