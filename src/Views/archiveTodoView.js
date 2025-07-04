@@ -1,5 +1,6 @@
-import { removeTask, retrieveTask } from "../Models/storageModel.js";
-import { removeTaskFromList } from "../Models/listModel";
+import { retrieveTask } from "../Models/storageModel.js";
+import { Todo, addToList } from "../Models/todoModel";
+import displayTasks, { displayLists } from "../home.js";
 
 function archiveTask(id, taskDiv) {
     const pageContent = document.querySelector(".page-content");
@@ -42,7 +43,15 @@ function archiveTask(id, taskDiv) {
     });
 
     archiveBtn.addEventListener("click", () => {
-        console.log("Archving task");
+        const task = retrieveTask(id);
+
+        let archiveTask = new Todo(task.title, task.description, task.dueDate, task.priority, task.list, task.done, true, task.id);
+        addToList(archiveTask);
+
+        taskDiv.remove();
+        displayTasks();
+        displayLists();
+        overlay.remove();
     });
 }
 

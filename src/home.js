@@ -95,7 +95,16 @@ function createHomePage() {
     archiveDiv.appendChild(archivedImg);
 
     archiveDiv.addEventListener("click", () => {
-        console.log("click");
+        showArchivedOnly = true;
+        activeListTasksIDs = null;
+
+        const allListDivs = document.querySelectorAll(".list-div, .all");
+        allListDivs.forEach(div => {
+            div.style.backgroundColor = "#EDF2F4";
+        });
+
+        activeList = null;
+        displayTasks();
     });
 
     const archiveText = document.createElement("p");
@@ -106,6 +115,7 @@ function createHomePage() {
 
 let activeListTasksIDs = null; 
 let activeList = null;
+let showArchivedOnly = false;
 
 function displayLists() {
     const listsContainer = document.querySelector(".lists");
@@ -139,17 +149,24 @@ function displayLists() {
                 if (listDiv.style.backgroundColor == "#8D99AE") {
                     listDiv.style.backgroundColor = "#EDF2F4"
                     activeList = null;
-                } else {
+                } 
+                else {
                     listDiv.style.backgroundColor = "#8D99AE";
                     activeList = listDiv;
                 }
             });
 
             allLists.addEventListener("click", () => {
+                showArchivedOnly = false;
+                activeListTasksIDs = null;
                 displayTasks();
+
+                if (activeList && activeList !== allLists) {
+                    activeList.style.backgroundColor = "#EDF2F4";
+                }
+
+                allLists.style.backgroundColor = "#8D99AE";
                 activeList = allLists;
-                listDiv.style.backgroundColor = "#EDF2F4"
-                activeList.style.backgroundColor = "#8D99AE";                               
             });
         }
     });
@@ -166,20 +183,18 @@ function displayTasks(activeListTasksIDs) {
     const tasks = loadAllTasks();
         
     tasks.forEach(task => {
-        if (task) {
-            if (activeListTasksIDs != null) {
-                for (let i = 0; i < activeListTasksIDs.length; i++) {
-                if (task.id == activeListTasksIDs[i]) {
-                    const taskElement = createTaskElement(task);
-                    mainPage.appendChild(taskElement);
-                    }
-                }
-            }
+        if (!task) return;
+        if (showArchivedOnly && !task.archived) return;
+        if (!showArchivedOnly && task.archived) return;
 
-            else {
+        if (activeListTasksIDs != null) {
+            if (activeListTasksIDs.includes(task.id)) {
                 const taskElement = createTaskElement(task);
-                mainPage.appendChild(taskElement);              
+                mainPage.appendChild(taskElement);
             }
+        } else {
+            const taskElement = createTaskElement(task);
+            mainPage.appendChild(taskElement);
         }
     });
 }

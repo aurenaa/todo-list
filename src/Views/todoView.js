@@ -145,7 +145,7 @@ function addTask() {
     });
 
     addBtn.addEventListener("click", () => {
-        let newTask = new Todo(titleInput.value, descriptionInput.value, dateInput.value, priorityCheckbox.checked, listInput.value, false);
+        let newTask = new Todo(titleInput.value, descriptionInput.value, dateInput.value, priorityCheckbox.checked, listInput.value, false, false);
         const taskID = addToList(newTask);
         addTaskToList(listInput.value, taskID);
         displayTasks();

@@ -1,12 +1,13 @@
 import { storeTask, retrieveTask, removeTask, loadAllTasks } from './storageModel';
 class Todo {
-    constructor(title, description, dueDate, priority, list, done, id = null) {
+    constructor(title, description, dueDate, priority, list, done, archived, id = null) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
         this.list = list;
         this.done = done;
+        this.archived = archived;
         this.id = id;
     }
 }
