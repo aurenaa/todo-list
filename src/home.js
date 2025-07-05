@@ -7,6 +7,8 @@ import unArchiveTask from './Views/unArchiveTodoView.js';
 import editTask from './Views/editTodoView.js';
 import { loadAllTasks, loadAllLists } from './Models/storageModel';
 
+let listsCount = 0;
+
 function createHomePage() {
     const content = document.querySelector(".content");
 
@@ -76,8 +78,15 @@ function createHomePage() {
     addListBtn.classList.add("add-task-btn");
     addListDiv.appendChild(addListBtn);
 
+    console.log(listsCount);
     addListBtn.addEventListener("click", () => {
-        addList();
+        if (listsCount == 8) {
+            return;
+        }
+        else {
+            addList();
+            listsCount++;
+        }
     });
 
     const addListText = document.createElement("p");
@@ -117,6 +126,7 @@ function createHomePage() {
 let activeListTasksIDs = null; 
 let activeList = null;
 let showArchivedOnly = false;
+let activeListBtns = null;
 
 function displayLists() {
     const listsContainer = document.querySelector(".lists");
@@ -135,7 +145,14 @@ function displayLists() {
              
             const title = document.createElement("p");
             title.textContent = list.name;
+
+            const listMenu = document.createElement("img");
+            listMenu.classList.add("list-menu");
+            listMenu.src = "/src/Assets/menu.png";
+            listMenu.title = "Show actions";
+
             listDiv.appendChild(title);
+            listDiv.appendChild(listMenu);
             listsContainer.appendChild(listDiv);
 
             listDiv.addEventListener("click", () => {
@@ -169,6 +186,39 @@ function displayLists() {
                 allLists.style.backgroundColor = "#8D99AE";
                 activeList = allLists;
             });
+
+            const listBtns = document.createElement("div");
+            listBtns.classList.add("list-btn");
+
+            //edit button
+            const editBtn = document.createElement("button");
+            editBtn.classList.add("edit-btn");
+            editBtn.textContent = "Edit..";
+
+            //remove button
+            const removeBtn = document.createElement("button");
+            removeBtn.classList.add("remove-btn");
+            removeBtn.textContent = "Remove";
+
+            listBtns.appendChild(editBtn);
+            listBtns.appendChild(removeBtn);
+            listDiv.appendChild(listBtns);
+
+            listMenu.addEventListener("click", () => {
+                if (activeListBtns && activeListBtns !== listBtns) {
+                    activeListBtns.style.display = "none";
+                }
+
+                if (listBtns.style.display === "block") {
+                    listBtns.style.display = "none";
+                    activeListBtns = null;
+                } 
+                else {
+                    listBtns.style.display = "block";
+                    activeListBtns = listBtns;
+                    }
+            });
+
         }
     });
 }

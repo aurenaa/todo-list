@@ -165,6 +165,15 @@ textarea {
     cursor: pointer;
 }
 
+.list-menu {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    inset-inline-start: 230px;
+    inset-block-start: 78px;
+    cursor: pointer;    
+}
+
 .done-div {
     position: absolute;
     inset-inline-start: 190px;
@@ -184,8 +193,19 @@ textarea {
     background-color: #D90429;
     border-radius: 8px;
     position: absolute;
-    inset-inline-start: 130px;
+    inset-inline-start: 250px;
     inset-block-start: 52px;
+}
+
+.list-btn {
+    display: none;
+    width: 120px;
+    height: 60px;
+    background-color: #D90429;
+    border-radius: 8px;
+    position: absolute;
+    inset-inline-start: 130px;
+    inset-block-start: 96px;    
 }
 
 .edit-btn, .remove-btn, .archive-btn {

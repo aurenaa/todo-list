@@ -1,4 +1,4 @@
-import { removeTask, retriveTask, loadAllLists } from "../Models/storageModel.js";
+import { retrieveTask, loadAllLists } from "../Models/storageModel.js";
 import { Todo, addToList } from "../Models/todoModel";
 import { addTaskToList, removeTaskFromList } from "../Models/listModel";
 import displayTasks, { displayLists } from "../home.js";
@@ -8,7 +8,7 @@ function editTask(id, taskDiv) {
     if (!pageContent) return;
 
     //getting the task to edit
-    const task = retriveTask(id);
+    const task = retrieveTask(id);
     if (document.querySelector(".task-form")) return;
 
     const taskForm = document.createElement("div");
