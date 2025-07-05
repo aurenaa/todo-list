@@ -2,6 +2,7 @@ import addTask from './Views/todoView.js'
 import { updateTask } from './Models/todoModel.js'
 import addList from './Views/listView.js'
 import deleteTask from './Views/removeTodoView.js';
+import deleteList from './Views/removeListView.js';
 import archiveTask from './Views/archiveTodoView.js';
 import unArchiveTask from './Views/unArchiveTodoView.js';
 import editTask from './Views/editTodoView.js';

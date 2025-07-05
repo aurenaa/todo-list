@@ -43,6 +43,16 @@ function removeTaskFromList(listName, taskID) {
     }
 }
 
+function reassignTasksToAll(taskIds) {
+    taskIds.forEach(taskId => {
+        const task = retrieveTask(taskId);
+        if (task) {
+            task.list = "All tasks";
+            storeTask(task);
+        }
+    });
+}
+
 function addTaskToList(listName, taskId) {
     const allLists = loadAllLists();
     const targetList = allLists.find(list => list.name === listName);
@@ -59,4 +69,4 @@ function addTaskToList(listName, taskId) {
     }
 }
 
-export { List, generateID, addToList, addTaskToList, removeTaskFromList };
+export { List, generateID, addToList, addTaskToList, removeTaskFromList, reassignTasksToAll };

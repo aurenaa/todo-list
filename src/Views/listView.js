@@ -1,4 +1,4 @@
-import List, { addToList } from "../Models/listModel.js";
+import { List, addToList } from "../Models/listModel.js";
 import { displayLists } from "../home.js";
 
 function addList() {
@@ -61,7 +61,7 @@ function addList() {
     });
 
     addBtn.addEventListener("click", () => {
-        let newList = new List(nameInput.value, );
+        let newList = new List(nameInput.value);
         console.log(newList);
         addToList(newList);
         displayLists();
