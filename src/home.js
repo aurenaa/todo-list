@@ -3,6 +3,7 @@ import { updateTask } from './Models/todoModel.js'
 import addList from './Views/listView.js'
 import deleteTask from './Views/removeTodoView.js';
 import archiveTask from './Views/archiveTodoView.js';
+import unArchiveTask from './Views/unArchiveTodoView.js';
 import editTask from './Views/editTodoView.js';
 import { loadAllTasks, loadAllLists } from './Models/storageModel';
 
@@ -224,7 +225,12 @@ function createTaskElement(task) {
     //archive button
     const archiveBtn = document.createElement("button");
     archiveBtn.classList.add("archive-btn");
-    archiveBtn.textContent = "Archive";
+    if (task.archived) {
+        archiveBtn.textContent = "Unarchive";
+    }
+    else {
+        archiveBtn.textContent = "Archive";
+    }
 
     taskBtns.appendChild(editBtn);
     taskBtns.appendChild(removeBtn);
@@ -254,7 +260,12 @@ function createTaskElement(task) {
     });
 
     archiveBtn.addEventListener("click", () => {
-        archiveTask(task.id, taskDiv);
+        if (!task.archived) {
+            archiveTask(task.id, taskDiv);            
+        }
+        else {
+            unArchiveTask(task.id, taskDiv);
+        }
     });
 
     const title = document.createElement("h3");
