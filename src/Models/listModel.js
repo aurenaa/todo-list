@@ -33,7 +33,6 @@ function removeTaskFromList(listName, taskID) {
     const allLists = loadAllLists();
     const targetList = allLists.find(list => list.name === listName);
 
-    console.log("targetlist", targetList);
     if (targetList) {
         targetList.todos = targetList.todos.filter(id => id !== taskID);
         storeList(targetList);

@@ -61,10 +61,16 @@ function addList() {
     });
 
     addBtn.addEventListener("click", () => {
-        let newList = new List(nameInput.value);
-        console.log(newList);
-        addToList(newList);
-        displayLists();
+        if (nameInput.value == "") {
+            alert("Error: List must have a name.");
+            return;
+        }
+        else {
+            let newList = new List(nameInput.value);
+            console.log(newList);
+            addToList(newList);
+            displayLists();
+        }
     });    
 }
 

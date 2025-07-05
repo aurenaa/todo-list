@@ -9,8 +9,6 @@ import editTask from './Views/editTodoView.js';
 import editList from './Views/editListView.js';
 import { loadAllTasks, loadAllLists } from './Models/storageModel';
 
-let listsCount = 0;
-
 function createHomePage() {
     const content = document.querySelector(".content");
 
@@ -80,15 +78,14 @@ function createHomePage() {
     addListBtn.classList.add("add-task-btn");
     addListDiv.appendChild(addListBtn);
 
-    console.log(listsCount);
     addListBtn.addEventListener("click", () => {
-        if (listsCount == 8) {
+        const currentLists = loadAllLists();
+        if (currentLists.length >= 7) {
+            alert("You can create up to 7 lists only.");
             return;
         }
-        else {
-            addList();
-            listsCount++;
-        }
+
+        addList();
     });
 
     const addListText = document.createElement("p");
@@ -223,7 +220,6 @@ function displayLists() {
 
             editBtn.addEventListener("click", () => {
                 editList(list.id, listDiv);
-                console.log("radi li ovde1");
             });
 
             removeBtn.addEventListener("click", () => {
@@ -334,6 +330,7 @@ function createTaskElement(task) {
     title.textContent = task.title;
 
     const description = document.createElement("p");
+    description.classList.add("description");
     description.textContent = task.description;
 
     const dueDate = document.createElement("p");

@@ -156,6 +156,14 @@ textarea {
     position: relative;
 }
 
+.description {
+    max-height: 30px;     /* ili koliko ti treba da se vidi bez skrola */
+    overflow-y: auto;     /* omogući vertikalni skrol */
+    overflow-x: hidden;   /* zabrani horizontalni */
+    white-space: normal;  /* omogući prelazak u više redova */
+    word-break: break-word; /* prelama reči ako su duge */
+}
+
 .task-menu {
     position: absolute;
     width: 20px;
@@ -177,7 +185,7 @@ textarea {
 .done-div {
     position: absolute;
     inset-inline-start: 190px;
-    inset-block-start: 185px;   
+    inset-block-start: 195px;   
     display: flex;
     gap: 3px;
 }
@@ -293,6 +301,7 @@ select {
     grid-template-rows: repeat(7, 1fr);
     gap: 5px;
     width: 100%;
+    height: 70%;
     justify-content: center;
 }
 

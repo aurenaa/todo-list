@@ -5,7 +5,6 @@ import displayTasks, { displayLists } from "../home.js";
 function editList(id, listDiv) {
     const pageContent = document.querySelector(".page-content");
     if (!pageContent) return;
-    console.log("radi li ovde2");
 
     //getting the task to edit
     const list = retrieveList(id);
@@ -68,7 +67,7 @@ function editList(id, listDiv) {
         if (!nameInput.value) {
             nameInput.value = nameInput.placeholder;
         }
-        console.log("radi li ovde3");
+
         let editedList = new List(nameInput.value, list.todos, list.id);
         addToList(editedList);
 
