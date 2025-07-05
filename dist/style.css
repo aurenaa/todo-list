@@ -169,8 +169,8 @@ textarea {
     position: absolute;
     width: 20px;
     height: 20px;
-    inset-inline-start: 230px;
-    inset-block-start: 78px;
+    inset-inline-start: 200px;
+    inset-block-start: 0px;
     cursor: pointer;    
 }
 
@@ -193,7 +193,7 @@ textarea {
     background-color: #D90429;
     border-radius: 8px;
     position: absolute;
-    inset-inline-start: 250px;
+    inset-inline-start: 130px;
     inset-block-start: 52px;
 }
 
@@ -204,8 +204,8 @@ textarea {
     background-color: #D90429;
     border-radius: 8px;
     position: absolute;
-    inset-inline-start: 130px;
-    inset-block-start: 96px;    
+    inset-inline-start: 110px;
+    inset-block-start: 28px;    
 }
 
 .edit-btn, .remove-btn, .archive-btn {
@@ -267,6 +267,7 @@ select {
 
 .all, .list-div, .add-list, .archived-task {
     display: flex;
+    position: relative;
     gap: 15px;
     align-items: center;
     margin-top: 10px;
@@ -297,7 +298,6 @@ select {
 
 .all p, .list-div p, .add-list-text, .archived-task-text {
     font-size: 20px;
-    padding: 0;
     margin-right: 10px;
 }
 
@@ -307,7 +307,7 @@ select {
 }
 
 
-.list-div p {
+.list-div p, .list-div img {
     padding: 10px;
 }
 

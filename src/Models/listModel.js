@@ -1,8 +1,9 @@
 import { storeTask, storeList, retrieveTask, removeTask, removeList, loadAllTasks, loadAllLists } from './storageModel';
 class List {
-    constructor(name, todos = []) {
+    constructor(name, todos = [], id = null) {
         this.name = name;
         this.todos = todos;
+        this.id = id;
     }
 }
 
@@ -19,8 +20,11 @@ function generateID() {
 }
 
 function addToList(list) {
-    list.id = generateID();
-    storeList(list);  
+    if (list.id == null) {
+        list.id = generateID();        
+    }
+    storeList(list);
+    return list.id; 
 }
 
 function removeTaskFromList(listName, taskID) {
@@ -55,5 +59,4 @@ function addTaskToList(listName, taskId) {
     }
 }
 
-export default List;
-export { generateID, addToList, addTaskToList, removeTaskFromList };
+export { List, generateID, addToList, addTaskToList, removeTaskFromList };

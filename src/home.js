@@ -5,6 +5,7 @@ import deleteTask from './Views/removeTodoView.js';
 import archiveTask from './Views/archiveTodoView.js';
 import unArchiveTask from './Views/unArchiveTodoView.js';
 import editTask from './Views/editTodoView.js';
+import editList from './Views/editListView.js';
 import { loadAllTasks, loadAllLists } from './Models/storageModel';
 
 let listsCount = 0;
@@ -217,6 +218,15 @@ function displayLists() {
                     listBtns.style.display = "block";
                     activeListBtns = listBtns;
                     }
+            });
+
+            editBtn.addEventListener("click", () => {
+                editList(list.id, listDiv);
+                console.log("radi li ovde1");
+            });
+
+            removeBtn.addEventListener("click", () => {
+                deleteList(list.id, listDiv);
             });
 
         }

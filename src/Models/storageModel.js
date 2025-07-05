@@ -18,6 +18,18 @@ function retrieveTask(id) {
     }    
 }
 
+function retrieveList(id) {
+    const storedList = localStorage.getItem(`list-${id}`);
+
+    if(storedList) {
+        return JSON.parse(storedList);
+    }
+    else {
+        console.log("List not found in local storage.");
+        return null;
+    }    
+}
+
 function loadAllTasks() {
     const tasks = [];
     for (let i = 0; i < localStorage.length; i++) {
@@ -50,4 +62,4 @@ function removeList(id) {
     localStorage.removeItem(`list-${id}`);
 }
 
-export { storeTask, storeList, retrieveTask, removeTask, removeList, loadAllTasks, loadAllLists };
+export { storeTask, storeList, retrieveTask, retrieveList, removeTask, removeList, loadAllTasks, loadAllLists };
